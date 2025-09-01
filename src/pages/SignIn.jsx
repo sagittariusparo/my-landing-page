@@ -1,7 +1,7 @@
 import './AuthForm.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import API_BASE_URL from '../config';  // ✅ centralised config
+import API_BASE_URL from '../config';
 
 const SignIn = ({ onLogin }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -19,6 +19,7 @@ const SignIn = ({ onLogin }) => {
       const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',   // ✅ include cookies/JWTs
         body: JSON.stringify({ email, password })
       });
 
@@ -29,14 +30,10 @@ const SignIn = ({ onLogin }) => {
         return;
       }
 
-      // ✅ Save token & user
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
 
-      // ✅ Trigger parent login state
       if (onLogin) onLogin();
-
-      // ✅ Redirect to trips
       navigate('/trips');
     } catch (err) {
       console.error(err);
@@ -50,21 +47,11 @@ const SignIn = ({ onLogin }) => {
       <form className="auth-form" onSubmit={handleSubmit}>
         <label>
           Email:
-          <input
-            type="email"
-            name="email"
-            required
-            onChange={handleChange}
-          />
+          <input type="email" name="email" required onChange={handleChange} />
         </label>
         <label>
           Password:
-          <input
-            type="password"
-            name="password"
-            required
-            onChange={handleChange}
-          />
+          <input type="password" name="password" required onChange={handleChange} />
         </label>
         <button type="submit">Sign In</button>
       </form>
