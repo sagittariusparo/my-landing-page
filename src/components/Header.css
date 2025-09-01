@@ -1,19 +1,67 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  background-color: #f8f9fa;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .menu a {
-  margin-right: 20px;
+  margin-right: 1rem;
   text-decoration: none;
   color: #333;
-  font-weight: bold;
+  font-weight: 500;
 }
 
+.menu a:hover {
+  color: #0077cc;
+}
+
+/* Auth buttons */
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.auth-buttons a,
 .auth-buttons button {
-  margin-left: 10px;
-  padding: 8px 12px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
   cursor: pointer;
+  text-decoration: none; /* remove underline for links */
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+/* Sign In button */
+.auth-buttons .signin {
+  background-color: #0077cc;
+  color: #fff;
+}
+
+.auth-buttons .signin:hover {
+  background-color: #005fa3;
+}
+
+/* Register button */
+.auth-buttons .register {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.auth-buttons .register:hover {
+  background-color: #1e7e34;
+}
+
+/* Logout button */
+.auth-buttons .logout {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.auth-buttons .logout:hover {
+  background-color: #a71d2a;
 }
